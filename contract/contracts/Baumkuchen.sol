@@ -13,30 +13,53 @@ contract Baumkuchen {
     User[] users;
     mapping(address => uint256) private userMapping;
 
+    struct Question {
+        uint256 userId;
+        uint256 good;
+    }
     // indexを質問ID、要素をユーザIDとする
-    uint256[] questions;
+    Question[] questions;
+
+    struct Answer {
+        uint256 questionId;
+        uint256 userId;
+        uint256 good;
+    }
     // indexを回答ID、要素をユーザIDとする
-    uint256[] answers;
+    Answer[] answers;
 
     constructor() {
         console.log("Here is my first smart contract!");
     }
 
+    // 質問を投稿する
     function createQuestion() public {
         // msg.senderがusersに含まれていれば
         for (uint256 i; i < users.length; i++) {
             if (users[i].eoaAddress == msg.sender) {
-                questions.push(i);
+                questions.push(Question(i, 0));
                 return;
             }
         }
 
         // 含まれていなければ
-        questions.push(users.length);
+        questions.push(Question(users.length, 0));
         users.push(User(msg.sender, 0));
     }
 
-    function getQuestions() view public returns (uint256[] memory) {
+    // 質問にいいねする
+    function goodQuestion(uint256 questionId) public {}
+
+    // 回答を投稿する
+    function createAnswer(uint256 questionId) public {}
+
+    // 回答にいいねする
+    function goodAnswer(uint256 answerId) public {}
+
+    // 全ユーザのスコアを計算する（nodeから定期実行）
+    function calculateScore() public {}
+
+    function getQuestions() public view returns (Question[] memory) {
         return questions;
     }
 }
