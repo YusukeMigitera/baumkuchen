@@ -5,9 +5,14 @@ pragma solidity ^0.8.17;
 import "hardhat/console.sol";
 
 contract Baumkuchen {
+    struct Score {
+        string community;
+        uint256 score;
+    }
+
     struct User {
         address eoaAddress; // ウォレットアドレス
-        uint256 score; // 信頼スコア
+        Score[] scores; // 信頼スコア
     }
     // indexをユーザIDとする
     User[] users;
@@ -44,7 +49,7 @@ contract Baumkuchen {
 
         // 含まれていなければ
         questions.push(Question(users.length, 0));
-        users.push(User(msg.sender, 0));
+        users.push(User(msg.sender, new Score[](0)));
     }
 
     // 質問にいいねする
