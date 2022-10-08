@@ -1,19 +1,19 @@
-import { createServer } from "http";
-import { parse } from "url";
+import { createServer } from 'http';
+import { parse } from 'url';
 
 const port = 8000;
 
 const server = createServer((request, response) => {
-  const uri = parse(request.url || "").pathname;
+  const uri = parse(request.url || '').pathname;
 
   response.writeHead(200, {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   });
 
-  if (uri === "/") {
+  if (uri === '/') {
     response.end(
       JSON.stringify({
-        message: "Hello",
+        message: 'Hello',
       })
     );
   }
