@@ -1,52 +1,40 @@
-import { createServer } from 'http';
-import { parse } from 'url';
 import { UserRepository } from './repository/UserRepository.js';
+import express from 'express';
+import { config } from 'dotenv';
 
+config();
+const app = express();
 const port = 8000;
 const userRepository = new UserRepository();
 
-const server = createServer((request, response) => {
-  const uri = parse(request.url || '').pathname;
+app.get('/secret', (req, res) => {
+  // const user = getUser(req);
 
-  response.writeHead(200, {
-    'Content-Type': 'application/json',
+  // if (!user) {
+  //   return res.status(401).json({
+  //     message: "Not authorized.",
+  //   });
+  // }
+
+  return res.status(200).json({
+    message: "This is a secret... don't tell anyone.",
   });
-
-  if (uri === '/') {
-    response.end(
-      JSON.stringify({
-        message: 'Hello',
-      })
-    );
-  } else if (uri === '/createUser') {
-    // ユーザ作成
-    userRepository.create().then((result) => response.end(result));
-  } else if (uri === '/readUser') {
-    // ユーザ取得
-    userRepository.read().then((result) => response.end(result));
-  } else if (uri === '/createQuestion') {
-    // 質問作成
-    response.end(
-      JSON.stringify({
-        message: 'succeeded',
-      })
-    );
-  } else if (uri === '/readQuestion') {
-    // 質問取得
-    response.end(
-      JSON.stringify({
-        message: 'succeeded',
-      })
-    );
-  } else if (uri === '/readQuestions') {
-    // 質問一覧取得
-    response.end(
-      JSON.stringify({
-        message: 'succeeded',
-      })
-    );
-  }
 });
 
-server.listen(port);
-console.log(`The server has started and is listening on port number: ${port}`);
+app.get('/', (req, res) => {
+  return res.status(200).json({
+    message: 'Hello',
+  });
+});
+
+app.get('/createUser', (req, res) => {
+  userRepository.create().then((result) => res.status(200).send(result));
+});
+
+app.get('/readUser', (req, res) => {
+  userRepository.read().then((result) => res.status(200).send(result));
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
