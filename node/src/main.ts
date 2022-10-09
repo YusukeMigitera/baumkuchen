@@ -1,23 +1,29 @@
 import { UserRepository } from './repository/UserRepository.js';
 import express from 'express';
 import { config } from 'dotenv';
+import { getUser, ThirdwebAuth } from "@thirdweb-dev/auth/express";
 
 config();
 const app = express();
 const port = 8000;
 const userRepository = new UserRepository();
 
-app.get('/secret', (req, res) => {
-  // const user = getUser(req);
+ThirdwebAuth(app, {
+  privateKey: process.env.ADMIN_PRIVATE_KEY || "",
+  domain: "example.com",
+});
 
-  // if (!user) {
-  //   return res.status(401).json({
-  //     message: "Not authorized.",
-  //   });
-  // }
+app.get('/secret', (req, res) => {
+  const user = getUser(req);
+
+  if (!user) {
+    return res.status(401).json({
+      message: "Not authorized.",
+    });
+  }
 
   return res.status(200).json({
-    message: "This is a secret... don't tell anyone.",
+    message: `You are ${user.address}.`,
   });
 });
 
