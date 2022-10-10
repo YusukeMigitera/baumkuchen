@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 export const Header: FC = memo(() => {
   return (
     <header>
-      <div className="h-32 bg-purple-800 px-12 pt-4 text-white">
+      <div className="h-28 bg-purple-800 px-12 pt-4 text-white">
         <div className="flex relative items-center">        
           <Link to="/">
             <h1 className="text-white text-2xl">Baumkuchen</h1>
@@ -15,7 +15,7 @@ export const Header: FC = memo(() => {
             <button className="h-10 w-24 border-2 border-current text-sm rounded-md">Create</button>
           </div>
         </div>
-        <div className="flex pt-6">
+        <div className="flex pt-4">
           <Link to="/" className=" px-4 mr-6">
             <p>Questions</p>
           </Link>
