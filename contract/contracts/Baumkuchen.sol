@@ -33,7 +33,7 @@ contract Baumkuchen {
     // indexを回答ID、要素をユーザIDとする
     Answer[] answers;
 
-    constructor() {
+    constructor() payable {
         console.log("Here is my first smart contract!");
     }
 
@@ -49,7 +49,8 @@ contract Baumkuchen {
 
         // 含まれていなければ
         questions.push(Question(users.length, 0));
-        users.push(User(msg.sender, new Score[](0)));
+        User storage user = users.push();
+        user.eoaAddress = msg.sender;
     }
 
     // 質問にいいねする
@@ -66,5 +67,16 @@ contract Baumkuchen {
 
     function getQuestions() public view returns (Question[] memory) {
         return questions;
+    }
+
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    function send(address to, uint256 amount) public {
+        require(address(this).balance >= amount, "low contract balance");
+
+        (bool success, ) = (to).call{value: amount}("");
+        require(success, "Failed to withdraw money from contract.");
     }
 }
