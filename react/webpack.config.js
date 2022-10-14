@@ -35,11 +35,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
     ],
   },
@@ -60,6 +56,7 @@ module.exports = {
   },
   devServer: {
     hot: true,
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'dist'),
     },
