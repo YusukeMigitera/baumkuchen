@@ -1,6 +1,10 @@
 import React from 'react';
 import { memo, FC } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  connectWallet,
+  checkIfWalletIsConnected,
+} from '../../../functions/walletFunctions';
 
 export const Header: FC = memo(() => {
   return (
@@ -16,7 +20,12 @@ export const Header: FC = memo(() => {
               placeholder="Search"
               className="h-10 w-72 px-0 rounded-full px-4 mr-8 outline-none text-black"
             />
-            <button className="h-10 w-24 mr-6 border-2 border-current text-sm rounded-md">
+            <button
+              className="h-10 w-24 mr-6 border-2 border-current text-sm rounded-md"
+              onClick={() => {
+                connectWallet();
+              }}
+            >
               Login
             </button>
             <button className="h-10 w-24 border-2 border-current text-sm rounded-md">
