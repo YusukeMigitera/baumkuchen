@@ -20,7 +20,7 @@ export const Header: FC = memo(() => {
           <Link to="/" className=" px-4 mr-6">
             <p>Questions</p>
           </Link>
-          <Link to="/question" className="px-4 mr-6">
+          <Link to="/questions" className="px-4 mr-6">
             <p>Ask Question</p>
           </Link>
           <Link to="/answer" className="px-4 mr-6">

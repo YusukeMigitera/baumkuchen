@@ -4,6 +4,7 @@ import { NotFound404 } from "../components/pages/NotFount404";
 import { QAList } from "../components/pages/QAList";
 import { Question } from "../components/pages/Question";
 import { UserProfile } from "../components/pages/UserProfile";
+import { QA } from "../components/pages/QA"
 
 export const RoutesSetting = [
   {
@@ -11,12 +12,16 @@ export const RoutesSetting = [
     children: <QAList/>
   },
   {
-    path: "/question",
+    path: "/questions",
     children: <Question/>
   },
   {
     path: "/answer",
     children: <Answer/>
+  },
+  {
+    path: "/questions/:post",
+    children: <QA/>
   },
   {
     path: "/user",
