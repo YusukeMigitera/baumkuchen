@@ -16,6 +16,7 @@ export const getBalance = async () => {
       );
       const balance = await contract.getBalance();
       console.log('balance: ', balance);
+      return ethers.utils.formatEther(balance);
     } else {
       console.log("Ethereum object doesn't exist!");
     }
