@@ -8,13 +8,13 @@ import { RoutesSetting } from "./RoutesSetting";
 export const Router: FC = memo(() => {
   return (
     <Routes>
-      {RoutesSetting.map((route) => (
-        <Route key={route.path} path={route.path}
-          element={
-            <Layout>{route.children}</Layout>
-          }
-        />
-      ))}
+        {RoutesSetting.map((route) => (
+          <Route key={route.path} path={route.path}
+            element={
+              <Layout>{route.children}</Layout>
+            }
+          />
+        ))}
     </Routes>
   )
 })

@@ -7,11 +7,12 @@ import { TagButton } from '../atoms/TagButton';
 import { UserButton } from '../atoms/UserButton';
 import { Answers } from '../db/answers/Answers';
 import { Comments } from '../db/answers/Comments';
+import { usePriceValue } from '../hooks/usePriceValue';
 
 export const QA: FC = memo(() => {
   const location = useLocation();
   const q = location.state.question;
-  console.log(q)
+  const { priceValue } = usePriceValue();
 
   return (
     <>
@@ -52,7 +53,7 @@ export const QA: FC = memo(() => {
                   <button 
                     className='ml-auto py-1'
                     onClick={() => {
-                      send(answer.user, '0.00001');
+                      send(answer.user, String(priceValue));
                     }}>
                       <UserButton userAddress={answer.user} />
                   </button>
@@ -60,7 +61,7 @@ export const QA: FC = memo(() => {
               </div>
               {Comments.map((comment) => (
                 comment.targetId === answer.id &&
-                <div className='px-3 border-b border-gray-500 shadow-b-md'>
+                <div className='px-3 border-b border-gray-500 shadow-b-md' key={comment.id}>
                   <div className='text-sm text-slate-700 my-2'>
                     <p>{comment.container}</p>
                     <div className='flex '>
