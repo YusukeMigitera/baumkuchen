@@ -10,11 +10,11 @@ export const Header: FC = memo(() => {
   return (
     <header>
       <div className="h-28 bg-purple-800 px-12 pt-4 text-white">
-        <div className="flex relative items-center">
+        <div className="flex items-center">
           <Link to="/">
             <h1 className="text-white text-2xl">Baumkuchen</h1>
           </Link>
-          <div className="absolute right-0 mr-8">
+          <div className="ml-auto mr-8">
             <input
               type="text"
               placeholder="Search"
@@ -24,8 +24,7 @@ export const Header: FC = memo(() => {
               className="h-10 w-24 mr-6 border-2 border-current text-sm rounded-md"
               onClick={() => {
                 connectWallet();
-              }}
-            >
+              }}>
               Login
             </button>
             <button className="h-10 w-24 border-2 border-current text-sm rounded-md">
