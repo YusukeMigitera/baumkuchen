@@ -6,6 +6,7 @@ export const Answers = [
     targetId: '1',
     timestamp: 'Oct 16, 2022',
     user: '0xf846729345a708D9Fe45De29393A46397A4C6AKDP',
+    value: 5,
   },
   {
     id: '2',
@@ -14,6 +15,7 @@ export const Answers = [
     targetId: '1',
     timestamp: 'Oct 16, 2022',
     user: '0x2778B5ed49523e880798930a66A2f83E7659654F',
+    value: 11,
   },
   {
     id: '3',
@@ -22,6 +24,7 @@ export const Answers = [
     targetId: '2',
     timestamp: 'Oct 16, 2022',
     user: '0x2778B5ed49523e880798930a66A2f83E7659654F',
+    value: 7,
   },
   {
     id: '4',
@@ -30,6 +33,7 @@ export const Answers = [
     targetId: '2',
     timestamp: 'Oct 16, 2022',
     user: '0x2778B5ed49523e880798930a66A2f83E7659654F',
+    value: 4,
   },
   {
     id: '5',
@@ -38,5 +42,6 @@ export const Answers = [
     targetId: '2',
     timestamp: 'Oct 16, 2022',
     user: '0x2778B5ed49523e880798930a66A2f83E7659654F',
+    value: 6,
   },
 ];

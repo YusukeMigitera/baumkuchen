@@ -52,9 +52,11 @@ export const Header: FC = memo(() => {
       <div className="h-12 bg-white-800 px-12 shadow-md shadow-black-500/50">
         <div className="flex items-center gap-4 h-full">
             {Communities.map((comunity) => (
-              <button className="">
-                <img className='h-8 w-8 rounded-full bg-slate-400 mr-1 border-solid border-2 border-black rounded-full bg-slate-200' src={comunity.imgUrl} alt={comunity.name} />
-              </button>
+              <div key={comunity.name}>
+                <button className="">
+                  <img className='h-8 w-8 rounded-full bg-slate-400 mr-1 border-solid border-2 border-black rounded-full bg-slate-200' src={comunity.imgUrl} alt={comunity.name} />
+                </button>
+              </div>
             ))}
         </div>
       </div>

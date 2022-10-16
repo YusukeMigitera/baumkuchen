@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { memo, FC } from 'react';
 import { CommunityButton } from '../atoms/CommunityButton';
@@ -13,9 +13,12 @@ export const QA: FC = memo(() => {
   const q = location.state.question;
   const [popupVisible, setPopupVisible] = useState<boolean>(false);
   const [bestAnswer, setbestAnswer] = useState<boolean>(false);
+  const [value, setValue] = useState<number>(0);
   const onClickToggle = () => setPopupVisible(!popupVisible);
   const onClickBestAns = () => setbestAnswer(true);
+  const onClickValue = useCallback(() => {setValue(1), setPopupVisible(!popupVisible)},[!popupVisible]);
   console.log(popupVisible);
+  console.log(value)
 
   return (
     <>
@@ -60,8 +63,12 @@ export const QA: FC = memo(() => {
                       answer
                     </div>
                   )}
-                  <div className="text-xs text-slate-500 my-3">
-                    <div>{answer.timestamp}</div>
+                  <div className="text-xs text-slate-500 my-3 flex items-center">
+                    <div className='mr-5'>{answer.timestamp}</div>
+                    <div className='mr-5' >value {answer.id === "2" && bestAnswer ? value + answer.value : answer.value}</div>
+                    <button onClick={onClickValue}>
+                      <img className='w-6 h-6' src="https://cdn-icons-png.flaticon.com/512/2652/2652197.png" alt="goodIcon" />
+                    </button>
                   </div>
                   <div className="px-3 border-b border-gray-500 shadow-b-md pb-3">
                     <p>{answer.container}</p>
