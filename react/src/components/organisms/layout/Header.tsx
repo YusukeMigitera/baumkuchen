@@ -5,6 +5,7 @@ import {
   connectWallet,
   checkIfWalletIsConnected,
 } from '../../../functions/walletFunctions';
+import { Communities } from '../../db/communities/Communities';
 
 export const Header: FC = memo(() => {
   return (
@@ -50,10 +51,11 @@ export const Header: FC = memo(() => {
       {/* コミュニティヘッダー */}
       <div className="h-12 bg-white-800 px-12 shadow-md shadow-black-500/50">
         <div className="flex items-center gap-4 h-full">
-          <div className="flex-none">{/* <img src={homeicon} alt="" /> */}</div>
-          <div className="flex-none w-8 h-8 border-solid border-2 border-black rounded-full bg-slate-200"></div>
-          <div className="flex-none w-8 h-8 border-solid border-2 border-black rounded-full bg-slate-200"></div>
-          <div className="flex-none w-8 h-8 border-solid border-2 border-black rounded-full bg-slate-200"></div>
+            {Communities.map((comunity) => (
+              <button className="">
+                <img className='h-8 w-8 rounded-full bg-slate-400 mr-1 border-solid border-2 border-black rounded-full bg-slate-200' src={comunity.imgUrl} alt={comunity.name} />
+              </button>
+            ))}
         </div>
       </div>
     </header>
