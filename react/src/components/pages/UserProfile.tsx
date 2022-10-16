@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, ChangeEvent } from 'react';
 import { memo, FC } from 'react';
 import { getBalance } from '../../functions/contractFunction';
 // import { MyContext } from '../../App';
-import { usePriceValue } from "../hooks/usePriceValue"
+import { usePriceValue } from '../hooks/usePriceValue';
 
 export const UserProfile: FC = memo(() => {
   // const ViewStock = async () => {
@@ -26,8 +26,9 @@ export const UserProfile: FC = memo(() => {
   }, []);
 
   const { priceValue, setPriceValue } = usePriceValue();
-  const onChangePriceValue = (e: ChangeEvent<HTMLInputElement>) => setPriceValue(Number(e.target.value) ?? priceValue)
-  console.log(onChangePriceValue)
+  const onChangePriceValue = (e: ChangeEvent<HTMLInputElement>) =>
+    setPriceValue(Number(e.target.value) ?? priceValue);
+  console.log(onChangePriceValue);
 
   return (
     <div className="flex justify-center items-center flex-col pt-12">
@@ -50,7 +51,7 @@ export const UserProfile: FC = memo(() => {
           onChange={onChangePriceValue}
           step="0.001"
           min="0.001"
-          className="text-5xl font-bold bg-white border-solid border-2 border-black text-center p-3 w-40"
+          className="text-5xl font-bold bg-white border-solid border-2 border-black text-center p-3 w-48"
         />
         <p className="text-3xl font-bold">ETH</p>
       </div>
