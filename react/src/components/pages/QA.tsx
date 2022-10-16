@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { memo, FC } from 'react';
-import { send } from '../../functions/contractFunction';
 import { CommunityButton } from "../atoms/CommunityButton"
 import { TagButton } from '../atoms/TagButton';
 import { UserButton } from '../atoms/UserButton';
 import { Answers } from '../db/answers/Answers';
 import { Comments } from '../db/answers/Comments';
-import { usePriceValue } from '../hooks/usePriceValue';
+import { Popup } from '../organisms/Popup';
 
 export const QA: FC = memo(() => {
   const location = useLocation();
   const q = location.state.question;
-  const { priceValue } = usePriceValue();
+  const [popupVisible, setPopupVisible] = useState<boolean>(false);
+  const onClickToggle = () => setPopupVisible(!popupVisible);
+  console.log(popupVisible)
 
   return (
     <>
@@ -52,9 +53,8 @@ export const QA: FC = memo(() => {
                 <div className='flex'>
                   <button 
                     className='ml-auto py-1'
-                    onClick={() => {
-                      send(answer.user, String(priceValue));
-                    }}>
+                    onClick={onClickToggle}
+                    >
                       <UserButton userAddress={answer.user} />
                   </button>
                 </div>
@@ -75,6 +75,7 @@ export const QA: FC = memo(() => {
           ))}
         </div>
       </div>
+      <Popup togglePopup={popupVisible} onClickToggle={onClickToggle} sendUser={q.user}/>
     </>
   );
 });
