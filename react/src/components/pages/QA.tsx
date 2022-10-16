@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { memo, FC } from 'react';
-import { send } from '../../functions/contractFunction';
 import { CommunityButton } from "../atoms/CommunityButton"
 import { TagButton } from '../atoms/TagButton';
 import { UserButton } from '../atoms/UserButton';
 import { Answers } from '../db/answers/Answers';
 import { Comments } from '../db/answers/Comments';
+import { Popup } from '../organisms/Popup';
 
 export const QA: FC = memo(() => {
   const location = useLocation();
   const q = location.state.question;
-  console.log(q)
+  const [popupVisible, setPopupVisible] = useState<boolean>(false);
+  const onClickToggle = () => setPopupVisible(!popupVisible);
+  console.log(popupVisible)
 
   return (
     <>
@@ -51,16 +53,15 @@ export const QA: FC = memo(() => {
                 <div className='flex'>
                   <button 
                     className='ml-auto py-1'
-                    onClick={() => {
-                      send(answer.user, '0.00001');
-                    }}>
+                    onClick={onClickToggle}
+                    >
                       <UserButton userAddress={answer.user} />
                   </button>
                 </div>
               </div>
               {Comments.map((comment) => (
                 comment.targetId === answer.id &&
-                <div className='px-3 border-b border-gray-500 shadow-b-md'>
+                <div className='px-3 border-b border-gray-500 shadow-b-md' key={comment.id}>
                   <div className='text-sm text-slate-700 my-2'>
                     <p>{comment.container}</p>
                     <div className='flex '>
@@ -74,6 +75,7 @@ export const QA: FC = memo(() => {
           ))}
         </div>
       </div>
+      <Popup togglePopup={popupVisible} onClickToggle={onClickToggle} sendUser={q.user}/>
     </>
   );
 });
