@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, ChangeEvent } from 'react';
 import { memo, FC } from 'react';
-import { getBalance } from '../../functions/contractFunction';
+import { getBalance, deposit } from '../../functions/contractFunction';
 // import { MyContext } from '../../App';
 import { usePriceValue } from '../hooks/usePriceValue';
 
@@ -39,6 +39,7 @@ export const UserProfile: FC = memo(() => {
         <button
           id="stockSubmit"
           className="ml-7 p-2 border-solid border-2 border-black"
+          onClick={() => deposit('0.01')}
         >
           STOCK
         </button>

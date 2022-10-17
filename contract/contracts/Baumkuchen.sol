@@ -79,4 +79,6 @@ contract Baumkuchen {
         (bool success, ) = (to).call{value: amount}("");
         require(success, "Failed to withdraw money from contract.");
     }
+
+    function deposit() public payable {}
 }

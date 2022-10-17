@@ -1,8 +1,10 @@
 import { ethers } from "hardhat";
+
+const initialBalance = "0.0";
 const main = async () => {
   const ContractFactory = await ethers.getContractFactory("Baumkuchen");
   const Contract = await ContractFactory.deploy({
-    value: ethers.utils.parseEther("0.1"),
+    value: ethers.utils.parseEther(initialBalance),
   });
 
   console.log("Contract deployed to: ", Contract.address);
