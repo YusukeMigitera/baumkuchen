@@ -1,7 +1,7 @@
 export const Comments = [
   {
     id: '1',
-    container: 'あれは斬新でしたよね！目から鱗でした。',
+    container: '結構課金者向けのアドバイスだと思うけど間違っていないw',
     targetId: '2',
     timestamp: 'Oct 16, 2022',
     user: '0x277…654F',
@@ -9,7 +9,7 @@ export const Comments = [
   {
     id: '2',
     container:
-      '私はかなりプロダクトを固めちゃったので、もうピポットするつもりはありませんが、次のハッカソンでは絶対活用しようと思いました。',
+      'ステータスもある程度レベルが上がってくると影響あるとおもうよー',
     targetId: '2',
     timestamp: 'Oct 16, 2022',
     user: '0x277…654F',
