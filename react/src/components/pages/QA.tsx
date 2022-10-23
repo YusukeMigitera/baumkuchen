@@ -16,9 +16,11 @@ export const QA: FC = memo(() => {
   const [value, setValue] = useState<number>(0);
   const onClickToggle = () => setPopupVisible(!popupVisible);
   const onClickBestAns = () => setbestAnswer(true);
-  const onClickValue = useCallback(() => {setValue(1), setPopupVisible(!popupVisible)},[!popupVisible]);
+  const onClickValue = useCallback(() => {
+    setValue(1), setPopupVisible(!popupVisible);
+  }, [!popupVisible]);
   console.log(popupVisible);
-  console.log(value)
+  console.log(value);
 
   return (
     <>
@@ -29,10 +31,17 @@ export const QA: FC = memo(() => {
               <div className="px-3 border-b border-gray-500 shadow-b-md">
                 <p className="text-lg font-medium">{q.title}</p>
                 <div className="flex items-center">
-                  <div className="flex text-xs text-slate-500 my-3">
+                  <div className="flex text-xs text-slate-500 my-3 items-center">
                     <div>{q.timestamp}</div>
                     <div className="mx-4">views {q.views}</div>
-                    <div>value {q.value}</div>
+                    <button>
+                      <img
+                        className="w-6 h-6"
+                        src="https://cdn-icons-png.flaticon.com/512/2652/2652197.png"
+                        alt="goodIcon"
+                      />
+                    </button>
+                    <p className="pl-2 font-bold">{q.value}</p>
                   </div>
                   <div className="ml-auto my-1">
                     <CommunityButton communityName={q.community} />
@@ -53,27 +62,56 @@ export const QA: FC = memo(() => {
             (answer) =>
               answer.targetId === q.id && (
                 <div
-                  className="rounded-xl border px-7 py-5 shadow-md mx-5 my-1 bg-white"
+                  className={`rounded-xl border px-7 py-5 shadow-md mx-5 my-1 bg-white ${
+                    answer.id === '2' && bestAnswer && 'border-red-400 '
+                  }`}
                   key={answer.id}
                 >
-                  {answer.id === '2' && bestAnswer && (
+                  {/* {answer.id === '2' && bestAnswer && (
                     <div className="text-white bg-red-600 rounded-full p-3 w-20 h-20 flex items-center justify-center text-center">
                       best
                       <br />
                       answer
                     </div>
-                  )}
+                  )} */}
                   <div className="text-xs text-slate-500 my-3 flex items-center">
-                    <div className='mr-5'>{answer.timestamp}</div>
-                    <div className='mr-5' >value {answer.id === "2" && bestAnswer ? value + answer.value : answer.value}</div>
+                    <div className="mr-5">{answer.timestamp}</div>
                     <button onClick={onClickValue}>
-                      <img className='w-6 h-6' src="https://cdn-icons-png.flaticon.com/512/2652/2652197.png" alt="goodIcon" />
+                      <img
+                        className="w-6 h-6"
+                        src="https://cdn-icons-png.flaticon.com/512/2652/2652197.png"
+                        alt="goodIcon"
+                      />
+                    </button>
+                    <p className="pl-2 font-bold">
+                      {' '}
+                      {answer.id === '2' && bestAnswer
+                        ? value + answer.value
+                        : answer.value}
+                    </p>
+                    {/* bestanswer btn */}
+                    <button
+                      className={`flex items-center p-1 rounded ml-3 border ${
+                        answer.id === '2' &&
+                        bestAnswer &&
+                        'border-red-400 text-red-400 border-4'
+                      }`}
+                      onClick={onClickToggle}
+                    >
+                      <p
+                        className={`mx-1 text-xs font-medium ${
+                          answer.id === '2' && bestAnswer && 'font-bold'
+                        }`}
+                      >
+                        {answer.id === '2' && bestAnswer ? '' : 'Give'}{' '}
+                        BestAnswer
+                      </p>
                     </button>
                   </div>
                   <div className="px-3 border-b border-gray-500 shadow-b-md pb-3">
                     <p>{answer.container}</p>
                     <div className="flex">
-                      <button className="ml-auto py-1" onClick={onClickToggle}>
+                      <button className="ml-auto py-1">
                         <UserButton userAddress={answer.user} />
                       </button>
                     </div>

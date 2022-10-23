@@ -17,7 +17,7 @@ export const PriceValueContext = createContext<PriceValueContextType>(
 
 export const PriceValueProvider = (props: { children: ReactNode }) => {
   const { children } = props;
-  const [priceValue, setPriceValue] = useState<number>(0.001);
+  const [priceValue, setPriceValue] = useState<number>(0.0001);
 
   return (
     <PriceValueContext.Provider value={{ priceValue, setPriceValue }}>

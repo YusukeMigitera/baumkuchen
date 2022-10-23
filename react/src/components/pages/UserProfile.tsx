@@ -51,7 +51,7 @@ export const UserProfile: FC = memo(() => {
           onChange={onChangePriceValue}
           step="0.001"
           min="0.001"
-          className="text-5xl font-bold bg-white border-solid border-2 border-black text-center p-3 w-48"
+          className="text-5xl font-bold bg-white border-solid border-2 border-black text-center p-3 w-52"
         />
         <p className="text-3xl font-bold">ETH</p>
       </div>
