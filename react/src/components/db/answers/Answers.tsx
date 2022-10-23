@@ -2,7 +2,7 @@ export const Answers = [
   {
     id: '1',
     container:
-      'ハッカソンのプライスを取りに行くやり方が斬新で、面白かったです！',
+      'あの',
     targetId: '1',
     timestamp: 'Oct 16, 2022',
     user: '0xf846729345a708D9Fe45De29393A46397A4C6AKDP',
