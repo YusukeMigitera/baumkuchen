@@ -26,11 +26,11 @@ export const RoutesSetting = [
   },
   {
     path: '/user',
-    children: <UserProfile />,
+    children: <UserProfiled />,
   },
   {
     path: '/user2',
-    children: <UserProfiled />,
+    children: <UserProfile />,
   },
   {
     path: '/*',

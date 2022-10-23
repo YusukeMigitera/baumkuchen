@@ -13,19 +13,20 @@ export const Header: FC = memo(() => {
       <div className="h-28 bg-purple-800 px-12 pt-4 text-white">
         <div className="flex items-center">
           <Link to="/">
-            <h1 className="text-white text-2xl">Baumkuchen</h1>
+            <h1 className="text-white text-2xl">Treat you</h1>
           </Link>
           <div className="ml-auto mr-8">
-            <input
+            {/* <input
               type="text"
               placeholder="Search"
               className="h-10 w-72 px-0 rounded-full px-4 mr-8 outline-none text-black"
-            />
+            /> */}
             <button
               className="h-10 w-24 mr-6 border-2 border-current text-sm rounded-md"
               onClick={() => {
                 connectWallet();
-              }}>
+              }}
+            >
               Login
             </button>
             <button className="h-10 w-24 border-2 border-current text-sm rounded-md">
@@ -51,13 +52,17 @@ export const Header: FC = memo(() => {
       {/* コミュニティヘッダー */}
       <div className="h-12 bg-white-800 px-12 shadow-md shadow-black-500/50">
         <div className="flex items-center gap-4 h-full">
-            {Communities.map((comunity) => (
-              <div key={comunity.name}>
-                <button className="">
-                  <img className='h-8 w-8 rounded-full bg-slate-400 mr-1 border-solid border-2 border-black rounded-full bg-slate-200' src={comunity.imgUrl} alt={comunity.name} />
-                </button>
-              </div>
-            ))}
+          {Communities.map((comunity) => (
+            <div key={comunity.name}>
+              <button className="">
+                <img
+                  className="h-8 w-8 rounded-full bg-slate-400 mr-1 border-solid border-2 border-black rounded-full bg-slate-200"
+                  src={comunity.imgUrl}
+                  alt={comunity.name}
+                />
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </header>
