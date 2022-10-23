@@ -41,4 +41,15 @@ describe("Baumkuchen", function () {
       expect(otherAccountBalance).to.equal(ethers.utils.parseEther("10000.01"));
     });
   });
+  describe("deposit", function () {
+    it("Should be right amount", async function () {
+      const { Contract } = await loadFixture(
+        deployBaumkuchenFixture
+      );
+
+      await expect(
+        Contract.deposit({ value: ethers.utils.parseEther("0.05") })
+      ).to.changeEtherBalances([Contract], [ethers.utils.parseEther("0.05")]);
+    });
+  });
 });
