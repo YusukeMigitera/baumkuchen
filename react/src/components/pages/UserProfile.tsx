@@ -32,6 +32,22 @@ export const UserProfile: FC = memo(() => {
 
   return (
     <div className="flex justify-center items-center flex-col pt-12">
+      <div className='w-1/2 h-1/4'>
+        <div className="w-full flex flex-col">
+          <label className="font-semibold leading-none text-gray-700">Subject</label>
+          <input type="text" className="leading-none text-gray-700 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 bg-gray-300 rounded"/>
+        </div>
+        <div className="w-full flex flex-col mt-8">
+          <label className="font-semibold leading-none text-gray-700">Message</label>
+          <textarea className="h-40 text-base leading-none text-gray-700 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-300 border-0 rounded"></textarea>
+        </div>
+        <div className="flex items-center justify-center w-full">
+          <button className="mt-9 font-semibold leading-none text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+              Send message
+          </button>
+        </div>
+      </div>
+      
       <h2 className="text-2xl font-bold">TOTAL STOCK</h2>
       <div className="flex justify-center items-end pt-7 pb-12">
         <p className="text-2xl font-bold">{stock}</p>
@@ -45,7 +61,7 @@ export const UserProfile: FC = memo(() => {
         </button>
       </div>
       <h2 className="text-2xl font-bold">PRICE / BEST ANSWER</h2>
-      <div className="flex justify-center items-end pt-7 pb-12 gap-6">
+      <div className="flex justify-center items-end pt-3 pb-12 gap-6">
         <input
           type="number"
           value={priceValue}
